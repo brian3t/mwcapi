@@ -1,0 +1,15 @@
+assets/*
+!assets/.gitignore
+config/db.php
+api/config/params.php
+config/params.php
+vendor/
+web/index.php
+api/index.php
+web/assets/
+api/assets/
+favicon.ico
+/cron/logs/
+cron/logs/
+/web/.htaccess
+web/cron/logs/del_idle_request.txt
