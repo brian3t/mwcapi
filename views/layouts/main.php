@@ -38,6 +38,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Users', 'url' => ['/cuser']],
+            ['label' => 'Geolocation', 'url' => ['/geolocation']],
             ['label' => 'Trips',  'items' => [
                 ['label' => 'Trip Receipt', 'url' => ['/tbl-tripreceipt']],
                 ['label' => 'Trip Receipt Point', 'url' => ['/tripreceipt-point']],
