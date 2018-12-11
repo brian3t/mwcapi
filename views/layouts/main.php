@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\assets\AppAsset;
@@ -39,14 +40,14 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Users', 'url' => ['/cuser']],
             ['label' => 'Geolocation', 'url' => ['/geolocation']],
-            ['label' => 'Trips',  'items' => [
+            ['label' => 'Trips', 'items' => [
                 ['label' => 'Trip Receipt', 'url' => ['/tbl-tripreceipt']],
                 ['label' => 'Trip Receipt Point', 'url' => ['/tripreceipt-point']],
                 ['label' => 'Rider History', 'url' => ['/rider-history']],
                 ['label' => 'Eligible Trip', 'url' => ['/vw-eligibletrips']],
                 ['label' => 'Eligible Trip Payment', 'url' => ['/eligibletrip-payment']],
             ]],
-            ['label' => 'Reports',  'items' => [
+            ['label' => 'Reports', 'items' => [
                 ['label' => 'Users agreed', 'url' => ['/report/users-agreed']],
                 ['label' => 'Users logged in', 'url' => ['/report/users-logged-in']],
             ]],
