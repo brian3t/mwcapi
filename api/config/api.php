@@ -75,6 +75,9 @@ $config = [
             'class' => 'app\api\modules\v1\Module',
             'basePath' => '@app/api/modules/v1',
         ],
+        'gridview' => [
+            'class' => '\kartik\grid\Module',
+        ]
     ],
     'params' => $params,
 ];

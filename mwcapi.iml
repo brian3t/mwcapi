@@ -12,8 +12,13 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/punycode" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/typeahead.js" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower-asset/yii2-pjax" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/bootstrap" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/bootstrap3-dialog" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/inputmask" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/jquery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower/punycode" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower/typeahead.js" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/yii2-pjax" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cebe/markdown" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/phpunit-wrapper" />
