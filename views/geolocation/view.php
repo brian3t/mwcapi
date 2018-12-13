@@ -40,10 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => 'Cuser',
         ],
         'created_at',
-        'lat',
-        'lng',
+        'latitude',
+        'longitude',
         'device_id',
         'accuracy',
+        'provider',
+        'altitude',
+        'time',
     ];
     echo DetailView::widget([
         'model' => $model,

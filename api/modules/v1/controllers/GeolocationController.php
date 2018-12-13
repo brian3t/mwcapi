@@ -5,8 +5,10 @@ namespace app\api\modules\v1\controllers;
 use app\api\base\controllers\BaseActiveController;
 use app\helpers\Logistic;
 use app\models\Cuser;
+use app\models\Geolocation;
 use app\models\TblTripreceipt;
 use app\models\TripreceiptPoint;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Yii;
 use yii\base\Exception;
 use yii\db\Query;
@@ -42,41 +44,39 @@ class GeolocationController extends BaseActiveController
     public function actionCreate()
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        header("Access-Control-Allow-Origin: *");
-
+        $new_geolocation = null;
         $entityBody = file_get_contents('php://input');
         try {
 //            Yii::error($entityBody);
 //            return $entityBody;
-            $entityBody = json_decode($entityBody);
-            //if cuser exists, return its id
-            if (property_exists($entityBody, 'commuter')) {
-                $cuser = Cuser::find()->where(array('username' => ucwords($entityBody->username)))->one();
-                if (is_object($cuser) && isset($cuser->id)) {
-                    /** @var Cuser $cuser */
-                    if (property_exists($entityBody, 'commuter_data')) {
-                        $cuser->commuter_data = $entityBody->commuter_data;
-                        if (!$cuser->save()) {
-                            \Yii::error("Failed saving cuser " . json_encode($cuser));
-                        };
-                    }
-                    echo '{"status":"successful", "id":"' . $cuser->id . '"}';
-                    \Yii::$app->response->setStatusCode(200);
-                    return;
+            $entityBody = json_decode($entityBody, true);
+            if (is_array($entityBody)) {
+                $new_geolocation = array_pop($entityBody);
+            } else {
+                return false;
+            }
+//            unset ($new_geolocation['speed'], $new_geolocation['bearing'], $new_geolocation['locationProvider']);
+            //convert time from epoch to timestamp
+            if (isset($new_geolocation['time'])) {
+                try {
+                    $datetime_obj = (new \DateTime())->setTimestamp(substr($new_geolocation['time'], 0, -3))
+                        ->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+                    $time_string = $datetime_obj->format('Y-m-d h:i:s');
+                    $new_geolocation['time'] = $time_string;
+                } catch (\Exception $e) {
+                    $new_geolocation['time'] = null;
                 }
             }
-            //else, try creating one
-            $new_cuser = new Cuser();
-            $new_cuser->load(['Cuser' => (array)$entityBody]);
+            $new_geol = new Geolocation();
+            $new_geol->setAttributes($new_geolocation);
+            $save_result = false;
             try {
-                $new_cuser->save();
-                echo '{"status":"successful", "id":"' . $new_cuser->id . '"}';
-                \Yii::$app->response->setStatusCode(201);
-                return;
-            } catch (Exception $e) {
-                \Yii::error("Cant create new cuser " . json_encode($entityBody) . $e->getMessage());
-                \Yii::$app->response->setStatusCode(400);
-                return;
+                $save_result = $new_geol->save();
+            } catch (\Exception $exception) {
+                Yii::error(json_encode($exception->getMessage()));
+            }
+            if (!$save_result) {
+                Yii::error(json_encode($new_geol->errors));
             }
         } catch (Exception $e) {
             \Yii::error("Bad input " . $e->getMessage());

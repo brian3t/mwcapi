@@ -11,10 +11,13 @@ use yii\behaviors\TimestampBehavior;
  * @property string $id
  * @property string $cuser_id
  * @property string $created_at
- * @property string $lat
- * @property string $lng
+ * @property string $latitude
+ * @property string $longitude
  * @property string $device_id
  * @property integer $accuracy
+ * @property string $provider
+ * @property string $altitude
+ * @property string $time
  *
  * @property \app\models\Cuser $cuser
  */
@@ -28,12 +31,11 @@ class Geolocation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cuser_id'], 'required'],
-            [['created_at'], 'safe'],
-            [['lat', 'lng'], 'number'],
+            [['created_at', 'time'], 'safe'],
+            [['latitude', 'longitude', 'altitude'], 'number'],
             [['accuracy'], 'integer'],
             [['id', 'cuser_id'], 'string', 'max' => 26],
-            [['device_id'], 'string', 'max' => 80]
+            [['device_id', 'provider'], 'string', 'max' => 80]
         ];
     }
     
@@ -53,10 +55,13 @@ class Geolocation extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'cuser_id' => 'Cuser ID',
-            'lat' => 'Lat',
-            'lng' => 'Lng',
+            'latitude' => 'Latitude',
+            'longitude' => 'Longitude',
             'device_id' => 'Device ID',
             'accuracy' => 'Accuracy',
+            'provider' => 'Provider',
+            'altitude' => 'Altitude',
+            'time' => 'Time',
         ];
     }
     
@@ -78,7 +83,7 @@ class Geolocation extends \yii\db\ActiveRecord
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => null,
+                'updatedAtAttribute' => false,
                 'value' => new \yii\db\Expression('NOW()'),
             ],
         ];

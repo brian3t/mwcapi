@@ -22,15 +22,15 @@ $this->registerJs($search);
     <p>
         <?= Html::a('Create Geolocation', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php 
+<?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
         [
                 'attribute' => 'cuser_id',
                 'label' => 'Cuser',
-                'value' => function($model){
-                    return $model->cuser->username;
+                'value' => function ($model) {
+                    return ($model->cuser instanceof \app\models\Cuser) ? $model->cuser->username : 'N/A';
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Cuser::find()->asArray()->all(), 'id', 'username'),
@@ -40,14 +40,17 @@ $this->registerJs($search);
                 'filterInputOptions' => ['placeholder' => 'Cuser', 'id' => 'grid--cuser_id']
             ],
         'created_at',
-        'lat',
-        'lng',
+        'latitude',
+        'longitude',
         'device_id',
         'accuracy',
+        'provider',
+        'altitude',
+        'time',
         [
             'class' => 'yii\grid\ActionColumn',
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
