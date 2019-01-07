@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Geolocation;
+use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * GeolocationController implements the CRUD actions for Geolocation model.
@@ -39,6 +39,15 @@ class GeolocationController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionDeleteall(){
+        Geolocation::deleteAll();
+        Yii::$app->session->addFlash('delallsuccessful', 'Del all geolocations successfully');
+        $dataProvider = new ActiveDataProvider([
+            'query' => Geolocation::find(),
+        ]);
+        return $this->redirect('index');
     }
 
     /**

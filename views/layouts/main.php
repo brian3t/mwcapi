@@ -59,6 +59,9 @@ AppAsset::register($this);
     ?>
 
     <div class="container-fluid">
+        <?php foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
+        echo '<div class="alert alert-' . $key . '">' . array_pop($message) . '</div>';
+        } ?>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

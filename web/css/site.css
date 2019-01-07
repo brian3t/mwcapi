@@ -10,6 +10,10 @@ body {
     padding: 0 0 60px;
 }
 
+nav+div{
+    margin-top: 51px;
+}
+
 .wrap > .container {
     padding: 70px 15px 20px;
 }

@@ -3,9 +3,9 @@
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
+use yii\helpers\Html;
 
 $this->title = 'Geolocation';
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,6 +21,7 @@ $this->registerJs($search);
 
     <p>
         <?= Html::a('Create Geolocation', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Delete all Geolocation', ['deleteall'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php
     $gridColumn = [
@@ -42,7 +43,13 @@ $this->registerJs($search);
         'created_at',
         'latitude',
         'longitude',
-        'device_id',
+        'commuter_id',
+        'trip_id',
+        'start_lat',
+        'start_lng',
+        'end_lat',
+        'end_lng',
+        'is_end_of_trip:boolean',
         'accuracy',
         'provider',
         'altitude',

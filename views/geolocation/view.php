@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Geolocation */
@@ -39,14 +38,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'cuser.username',
             'label' => 'Cuser',
         ],
-        'created_at',
         'latitude',
         'longitude',
-        'device_id',
         'accuracy',
         'provider',
         'altitude',
         'time',
+        'commuter_id',
+        'trip_id',
+        'start_lat',
+        'start_lng',
+        'end_lat',
+        'end_lng',
+        'is_end_of_trip:boolean',
     ];
     echo DetailView::widget([
         'model' => $model,

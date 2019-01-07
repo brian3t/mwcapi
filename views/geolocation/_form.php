@@ -25,13 +25,9 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'created_at')->textInput(['placeholder' => 'Created At']) ?>
-
     <?= $form->field($model, 'latitude')->textInput(['placeholder' => 'Latitude']) ?>
 
     <?= $form->field($model, 'longitude')->textInput(['placeholder' => 'Longitude']) ?>
-
-    <?= $form->field($model, 'device_id')->textInput(['maxlength' => true, 'placeholder' => 'Device']) ?>
 
     <?= $form->field($model, 'accuracy')->textInput(['placeholder' => 'Accuracy']) ?>
 
@@ -40,6 +36,20 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'altitude')->textInput(['placeholder' => 'Altitude']) ?>
 
     <?= $form->field($model, 'time')->textInput(['placeholder' => 'Time']) ?>
+
+    <?= $form->field($model, 'commuter_id')->textInput(['placeholder' => 'Commuter']) ?>
+
+    <?= $form->field($model, 'trip_id')->textInput(['maxlength' => true, 'placeholder' => 'Trip']) ?>
+
+    <?= $form->field($model, 'start_lat')->textInput(['placeholder' => 'Start Lat']) ?>
+
+    <?= $form->field($model, 'start_lng')->textInput(['placeholder' => 'Start Lng']) ?>
+
+    <?= $form->field($model, 'end_lat')->textInput(['placeholder' => 'End Lat']) ?>
+
+    <?= $form->field($model, 'end_lng')->textInput(['placeholder' => 'End Lng']) ?>
+
+    <?= $form->field($model, 'is_end_of_trip')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
